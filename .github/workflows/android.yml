@@ -108,6 +108,6 @@ jobs:
         with:
           serviceAccountJsonPlainText: ${{ secrets.PLAYSTORE_ACCOUNT_KEY }}
           packageName: com.app.package_name
-          releaseFiles: app/build/outputs/bundle/release/app-release.aab
+          releaseFiles: app-release.aab
           track: alpha
           status: completed
