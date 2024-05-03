@@ -65,7 +65,7 @@ jobs:
       - name: Build with Gradle
         run: ./gradlew build
       - name: create app bundle
-        run: ./gradlew :base:bundleDebug
+        run: ./gradlew bundleRelease
       - name: Create a Release in GitHub
         uses: ncipollo/release-action@v1
         with:
