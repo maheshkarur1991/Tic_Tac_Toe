@@ -2,7 +2,7 @@ name: Android app
 
 on:
   push:
-    branches: [main]
+    branches: [master]
 jobs:
   version:
     name: Create version number
@@ -44,6 +44,8 @@ jobs:
         uses: juliangruber/read-file-action@v1
         with:
           path: version1.txt
+      - name: Update version in YAML
+        run: sed -i 's/99.99.99+99/${{ steps.version.outputs.content }}+${{ github.run_number }}/g' 
       - name: Update KeyStore password in gradle properties
         run: sed -i 's/#{KEYSTORE_PASS}#/${{ secrets.KEYSTORE_PASS }}/g' app/key.properties
       - name: Update KeyStore key password in gradle properties
@@ -54,8 +56,12 @@ jobs:
       - uses: gradle/actions/setup-gradle@v3
         with:
           channel: "beta"
+      - name: Checkout sources
+        uses: actions/checkout@v4
+      - name: Setup Gradle
+        uses: gradle/gradle-build-action@v3
       - name: Build with Gradle
-        run: ./gradlew build  
+        run: ./gradlew build
       - name: Create a Release in GitHub
         uses: ncipollo/release-action@v1
         with:
