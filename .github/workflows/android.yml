@@ -1,3 +1,14 @@
+name: Tic_Tac_Toe
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+permissions:
+  contents: read
+
 jobs:
   build:
     name: Build APK and Create release
