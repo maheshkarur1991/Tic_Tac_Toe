@@ -2,7 +2,7 @@ name: Android app
 
 on:
   push:
-    branches: [master]
+    branches: [main]
 jobs:
   version:
     name: Create version number
