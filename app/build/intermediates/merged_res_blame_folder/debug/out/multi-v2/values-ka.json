@@ -4,7 +4,7 @@
             "outputFile": "C:\\git\\Tic_Tac_Toe\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-ka\\values-ka.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\mahes\\.gradle\\caches\\transforms-3\\accf5d3414dbb7c58c56772127db0d1e\\transformed\\appcompat-1.1.0\\res\\values-ka\\values-ka.xml",
+                    "source": "C:\\Users\\mahes\\.gradle\\caches\\transforms-3\\1cd632fed91047f864aa5fc02240525c\\transformed\\appcompat-1.1.0\\res\\values-ka\\values-ka.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -14,7 +14,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\mahes\\.gradle\\caches\\transforms-3\\ba85a5009ab0493ecd0f2e459f2ed6e3\\transformed\\core-1.1.0\\res\\values-ka\\values-ka.xml",
+                    "source": "C:\\Users\\mahes\\.gradle\\caches\\transforms-3\\bab16d82e4ecd6e42bf238eb5dba6873\\transformed\\core-1.1.0\\res\\values-ka\\values-ka.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
