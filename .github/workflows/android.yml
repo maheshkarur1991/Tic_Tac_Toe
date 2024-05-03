@@ -60,10 +60,10 @@ jobs:
         uses: gradle/gradle-build-action@v3
       - name: Make gradlew executable
         run: chmod +x ./gradlew
-      - name: Build with Gradle
-        run: ./gradlew build
       - name: debug the gradle
         run: ./gradlew signingReport
+      - name: Build with Gradle
+        run: ./gradlew build
       - name: Create a Release in GitHub
         uses: ncipollo/release-action@v1
         with:
