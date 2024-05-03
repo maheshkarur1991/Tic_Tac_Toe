@@ -77,7 +77,7 @@ jobs:
       - name: Upload AAB (App Bundle) Release - ${{ env.repository_name }}
         uses: actions/upload-artifact@v3
         with:
-          name: ${{ env.date_today }} - ${{ env.playstore_name }} - ${{ env.repository_name }} - App bundle(s) AAB release generated
+          name: ${{ env.date_today }}-${{ env.playstore_name }}-${{ env.repository_name }}
           path: ${{ env.main_project_module }}/build/outputs/bundle/release/
       # - name: Create a Release in GitHub
       #   uses: ncipollo/release-action@v1
@@ -100,7 +100,7 @@ jobs:
       - name: Get appbundle from artifacts
         uses: actions/download-artifact@v2
         with:
-          name: appbundle
+          name: ${{ env.date_today }}-${{ env.playstore_name }}-${{ env.repository_name }}
       - name: Release app to internal track
         uses: r0adkll/upload-google-play@v1
         with:
