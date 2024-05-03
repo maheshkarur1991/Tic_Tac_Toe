@@ -62,6 +62,8 @@ jobs:
         run: chmod +x ./gradlew
       - name: Build with Gradle
         run: ./gradlew build
+      - name: debug the gradle
+        run: ./gradlew signingReport
       - name: Create a Release in GitHub
         uses: ncipollo/release-action@v1
         with:
