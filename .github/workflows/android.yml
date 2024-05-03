@@ -14,7 +14,7 @@ jobs:
         run: tr -d '\n' < version.txt > version1.txt
       - name: Read version
         id: version
-        uses: maheshkarur19/read-file-action@v1
+        uses: https://github.com/maheshkarur1991/Tic_Tac_Toe.git
         with:
           path: version1.txt
       - name: Update version in YAML
