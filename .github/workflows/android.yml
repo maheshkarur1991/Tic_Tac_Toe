@@ -77,7 +77,7 @@ jobs:
       - name: Build app bundle release (AAB) - ${{ env.main_project_module }} module
         run: ./gradlew ${{ env.main_project_module }}:bundleRelease
       - name: Upload AAB (App Bundle) Release - ${{ env.repository_name }}
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: app-release.aab
           path: ${{ env.main_project_module }}/build/outputs/bundle/release/
@@ -103,7 +103,6 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: app-release.aab
-          path: app/build/outputs/bundle/release/
       - name: Release app to internal track
         uses: r0adkll/upload-google-play@v1
         with:
