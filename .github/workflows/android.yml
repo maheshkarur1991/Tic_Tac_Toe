@@ -43,9 +43,7 @@ jobs:
         id: version
         uses: juliangruber/read-file-action@v1
         with:
-          path: version1.txt
-      - name: Update version in YAML
-        run: sed -i 's/99.99.99+99/${{ steps.version.outputs.content }}+${{ github.run_number }}/g' 
+          path: version1.txt 
       - name: Update KeyStore password in gradle properties
         run: sed -i 's/#{KEYSTORE_PASS}#/${{ secrets.KEYSTORE_PASS }}/g' app/key.properties
       - name: Update KeyStore key password in gradle properties
