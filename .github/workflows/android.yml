@@ -1,8 +1,35 @@
-on: push
+name: Android app
 
+on:
+  push:
+    branches: [master]
 jobs:
+  version:
+    name: Create version number
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Fetch all history for all tags and branches
+        run: |
+          git config remote.origin.url https://x-access-token:${{ secrets.GIT_TOKEN }}@github.com/${{ github.repository }}
+          git fetch --prune --depth=10000
+      - name: Install GitVersion
+        uses: gittools/actions/gitversion/setup@v0.9.7
+        with:
+          versionSpec: "5.x"
+      - name: Use GitVersion
+        id: gitversion
+        uses: gittools/actions/gitversion/execute@v0.9.7
+      - name: Create version.txt with nuGetVersion
+        run: echo ${{ steps.gitversion.outputs.nuGetVersion  }} > version.txt
+      - name: Upload version.txt
+        uses: actions/upload-artifact@v2
+        with:
+          name: gitversion
+          path: version.txt
   build:
     name: Build APK and Create release
+    needs: [version]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
@@ -14,7 +41,7 @@ jobs:
         run: tr -d '\n' < version.txt > version1.txt
       - name: Read version
         id: version
-        uses: juliangruber/checkout@v1
+        uses: juliangruber/read-file-action@v1
         with:
           path: version1.txt
       - name: Update version in YAML
@@ -26,13 +53,11 @@ jobs:
       - uses: actions/setup-java@v1
         with:
           java-version: "12.x"
-      - uses: subosito/flutter-action@v1
+      - uses: gradle/actions/setup-gradle@v3
         with:
           channel: "beta"
-      - run: flutter clean
-      - run: flutter pub get
-      - run: flutter build apk --release --split-per-abi
-      - run: flutter build appbundle --release
+      - name: Build with Gradle
+        run: ./gradlew build  
       - name: Create a Release in GitHub
         uses: ncipollo/release-action@v1
         with:
@@ -45,3 +70,21 @@ jobs:
         with:
           name: appbundle
           path: build/app/outputs/bundle/release/app-release.aab
+  release:
+    name: Release app to internal track
+    needs: [build]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Get appbundle from artifacts
+        uses: actions/download-artifact@v2
+        with:
+          name: appbundle
+      - name: Release app to internal track
+        uses: r0adkll/upload-google-play@v1
+        with:
+          serviceAccountJsonPlainText: ${{ secrets.PLAYSTORE_ACCOUNT_KEY }}
+          packageName: com.app.package_name
+          releaseFiles: app-release.aab
+          track: alpha
+          status: completed
