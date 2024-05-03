@@ -106,6 +106,6 @@ jobs:
         with:
           serviceAccountJsonPlainText: ${{ secrets.PLAYSTORE_ACCOUNT_KEY }}
           packageName: com.app.package_name
-          releaseFiles: /home/runner/work/Tic_Tac_Toe/Tic_Tac_Toe/app-release.aab
+          releaseFiles: app/build/outputs/bundle/release/app-release.aab
           track: alpha
           status: completed
