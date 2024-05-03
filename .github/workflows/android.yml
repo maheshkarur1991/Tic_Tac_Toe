@@ -72,9 +72,10 @@ jobs:
         run: ./gradlew signingReport
       - name: Build with Gradle
         run: ./gradlew build
+      - name: make a folder for download
+        run:  mkdir -p app/build/outputs/bundle/release/
       - name: Build app bundle release (AAB) - ${{ env.main_project_module }} module
         run: ./gradlew ${{ env.main_project_module }}:bundleRelease
-        run:  mkdir -p app/build/outputs/bundle/release/
       - name: Upload AAB (App Bundle) Release - ${{ env.repository_name }}
         uses: actions/upload-artifact@v3
         with:
