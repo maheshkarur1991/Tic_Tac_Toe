@@ -111,3 +111,4 @@ jobs:
           releaseFiles: app-release.aab
           track: production
           status: inProgress
+          userFraction: 0.33
