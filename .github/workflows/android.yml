@@ -109,5 +109,5 @@ jobs:
           serviceAccountJsonPlainText: ${{ secrets.PLAYSTORE_ACCOUNT_KEY }}
           packageName: com.palahsu.ttt
           releaseFiles: app-release.aab
-          track: alpha
-          status: completed
+          track: production
+          status: inProgress
